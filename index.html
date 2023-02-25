@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Roblox Code Generator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script src="fengari-web.js" type="text/javascript"></script>
+
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Roblox Code Generator</h1>
+
+    </header>
+
+    <section>
+
+        <div>
+            <h2>Code: <span id='output'></span></h2>
+            <button id='generate'>Generate a new code</button>
+        </div>
+
+    </section>
+
+
+    <script type="application/lua">
+            local js = require "js"
+            local output = js.global.document:getElementById('output');
+            local generateButton = js.global.document:getElementById('generate');
+
+            -- Initialize the code variable
+            local code = ""
+
+            -- Define the possible characters to choose from
+            local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+            -- Define the length of the code
+            local length = 16
+
+            function generateName()
+                code = ""
+
+                -- Generate the code
+                for i = 1, length do
+                    local randIndex = math.random(#chars) -- Get a random index in the chars string
+                    code = code .. string.sub(chars, randIndex, randIndex) -- Add the character at that index to the code
+                end
+
+                output.innerText = code
+
+                
+            end
+
+            function generateButton:onclick(e)
+                generateName();
+
+                js.global.navigator.clipboard:writeText(code)
+
+                
+            end
+
+            -- Generate the code
+            for i = 1, length do
+                local randIndex = math.random(#chars) -- Get a random index in the chars string
+                code = code .. string.sub(chars, randIndex, randIndex) -- Add the character at that index to the code
+            end
+
+            output.innerText = code
+
+        </script>
+
+        
+</body>
+
+</html>
